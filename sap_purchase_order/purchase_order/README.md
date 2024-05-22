@@ -1,14 +1,14 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Wed May 22 2024 14:18:52 GMT+0200 (Mitteleuropäische Sommerzeit)|
-|**App Generator**<br>@sap/generator-fiori-elements|
+|**Generation Date and Time**<br>Wed May 22 2024 19:30:07 GMT+0200 (Mitteleuropäische Sommerzeit)|
+|**App Generator**<br>@sap/generator-fiori-freestyle|
 |**App Generator Version**<br>1.13.4|
 |**Generation Platform**<br>Visual Studio Code|
-|**Template Used**<br>List Report Page V2|
+|**Template Used**<br>simple|
 |**Service Type**<br>OData Url|
 |**Service URL**<br>https://s4h.ososoft.de:44300/sap/opu/odata/sap/Z_SHOPPING_LIST_UI_02/
-|**Module Name**<br>sap_purchase_order|
+|**Module Name**<br>purchase_order|
 |**Application Title**<br>Purchase Order|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_fiori_3|
@@ -16,9 +16,8 @@
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
-|**Main Entity**<br>ZC_PRODUCTS|
 
-## sap_purchase_order
+## purchase_order
 
 
 

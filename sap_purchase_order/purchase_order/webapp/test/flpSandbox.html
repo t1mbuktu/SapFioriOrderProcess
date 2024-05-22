@@ -44,10 +44,10 @@
                 }
             },
             applications: {
-                "sappurchaseorder-tile": {
+                "purchaseorder-display": {
                     title: "Purchase Order",
                     description: "",
-                    additionalInformation: "SAPUI5.Component=sappurchaseorder",
+                    additionalInformation: "SAPUI5.Component=purchaseorder",
                     applicationType: "URL",
                     url: "../"
                 }
@@ -59,20 +59,17 @@
     <!-- Bootstrap the UI5 core library. 'data-sap-ui-frameOptions="allow"'' is a NON-SECURE setting for test environments -->
     <script id="sap-ui-bootstrap"
         src="../resources/sap-ui-core.js"
-        data-sap-ui-libs="sap.m,sap.ui.core,sap.ushell,sap.f,sap.ui.comp,sap.ui.generic.app,sap.suite.ui.generic.template"
+        data-sap-ui-libs="sap.m,sap.ui.core,sap.f,sap.suite.ui.generic.template,sap.ui.comp,sap.ui.generic.app,sap.ui.table,sap.ushell"
         data-sap-ui-async="true"
         data-sap-ui-preload="async"
         data-sap-ui-theme="sap_fiori_3"
         data-sap-ui-compatVersion="edge"
         data-sap-ui-language="en"
-        data-sap-ui-resourceroots='{"sappurchaseorder": "../"}'
-        data-sap-ui-frameOptions="allow"
-        data-sap-ui-flexibilityServices='[{"applyConnector":"sappurchaseorder/test/changes_loader", "custom":true}, {"connector": "LocalStorageConnector"}]'>
+        data-sap-ui-resourceroots='{"purchaseorder": "../"}'
+        data-sap-ui-frameOptions="allow">
     </script>
     <script id="locate-reuse-libs" src="./locate-reuse-libs.js" data-sap-ui-manifest-uri="../manifest.json">
     </script>
-    <!-- relevant for version < 1.78.0 only -->
-	<script src="changes_preview.js"></script>
 </head>
 
 <!-- UI Content -->
