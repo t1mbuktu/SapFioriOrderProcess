@@ -17,7 +17,7 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/sap/opu/odata/sap/Z_SHOPPING_LIST_UI_02/",
+        "uri": "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -102,9 +102,16 @@
         },
         {
           "name": "ListView",
-          "pattern": "",
+          "pattern": "ListView",
           "target": [
             "TargetListView"
+          ]
+        },
+        {
+          "name": "DetailView",
+          "pattern": "",
+          "target": [
+            "TargetDetailView"
           ]
         }
       ],
@@ -122,6 +129,13 @@
           "clearControlAggregation": false,
           "viewId": "List",
           "viewName": "List"
+        },
+        "TargetDetailView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Detail",
+          "viewName": "Detail"
         }
       }
     },
