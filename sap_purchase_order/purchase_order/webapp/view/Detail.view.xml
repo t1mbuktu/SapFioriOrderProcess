@@ -12,25 +12,7 @@
 
 <l:VerticalLayout width="100%" id="ObjectHeaderDetail">
 
-    <ObjectHeader id="objectHeader"
-
-    intro="{parts:[{path:'i18n>xfld.orderedBy'},{path: 'OrderedByName'}], formatter: 'jQuery.sap.formatMessage'}"
-
-    number="{parts: [ {path: 'GrossAmount'}, {path: 'CurrencyCode'}], type : 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false }}"
-
-    numberUnit="{CurrencyCode}" responsive="true" title="{SupplierName}">
-
-        <statuses>
-
-            <ObjectStatus id="status"
-
-                text="{path: 'ChangedAt', type: 'sap.ui.model.type.Date',
-
-                formatOptions: { style: 'medium', strictParsing: true, relative: true }}"
-
-                title="{/#Z_C_PurchaseorderType/ChangedAt/@sap:label}"/>
-
-        </statuses>
+    <ObjectHeader id="objectHeader">
 
     </ObjectHeader>
 
