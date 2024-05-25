@@ -18,12 +18,7 @@
     "dataSources": {
       "mainService": {
         "uri": "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "localUri": "localService/metadata.xml",
-          "odataVersion": "2.0"
-        }
+        "type": "OData"
       }
     }
   },
@@ -69,7 +64,7 @@
           "bundleName": "purchaseorder.i18n.i18n"
         }
       },
-      "": {
+      "oData": {
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
@@ -102,14 +97,14 @@
         },
         {
           "name": "ListView",
-          "pattern": "ListView",
+          "pattern": "",
           "target": [
             "TargetListView"
           ]
         },
         {
           "name": "DetailView",
-          "pattern": "",
+          "pattern": "DetailView",
           "target": [
             "TargetDetailView"
           ]

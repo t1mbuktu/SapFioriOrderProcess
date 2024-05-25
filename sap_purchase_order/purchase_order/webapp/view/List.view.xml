@@ -1,5 +1,29 @@
-<mvc:View controllerName="purchaseorder.controller.View1"
+<mvc:View controllerName="purchaseorder.controller.List"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-
+    <List
+		items="{oData>/A_PurchaseOrder}"
+		headerText="Products">
+		<ObjectListItem
+			title="{PurchaseOrder}"
+			type="Active"
+			press="onListItemPress"
+			number="{
+				parts:[{path:'Price'},{path:'CurrencyCode'}],
+				type: 'sap.ui.model.type.Currency',
+				formatOptions: {showMeasure: false}
+			}"
+			numberUnit="{CurrencyCode}">
+			<firstStatus>
+				<ObjectStatus
+					text="{Status}"
+					state="{
+						path: 'Status',
+						formatter: 'sap.m.sample.ObjectListItem.Formatter.status'
+					}" />
+			</firstStatus>
+			<ObjectAttribute text="{WeightMeasure} {WeightUnit}" />
+			<ObjectAttribute text="{Width} x {Depth} x {Height} {DimUnit}" />
+		</ObjectListItem>
+	</List>
 </mvc:View>
