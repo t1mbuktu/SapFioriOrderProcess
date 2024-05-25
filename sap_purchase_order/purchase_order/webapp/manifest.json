@@ -18,7 +18,12 @@
     "dataSources": {
       "mainService": {
         "uri": "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/",
-        "type": "OData"
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
       }
     }
   },
@@ -64,7 +69,7 @@
           "bundleName": "purchaseorder.i18n.i18n"
         }
       },
-      "oData": {
+      "": {
         "dataSource": "mainService",
         "preload": true,
         "settings": {}

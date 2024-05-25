@@ -2,8 +2,8 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
     <List
-		items="{oData>/A_PurchaseOrder}"
-		headerText="Products">
+		items="{/A_PurchaseOrder}"
+		headerText="Purchase Orders()">
 		<ObjectListItem
 			title="{PurchaseOrder}"
 			type="Active"
