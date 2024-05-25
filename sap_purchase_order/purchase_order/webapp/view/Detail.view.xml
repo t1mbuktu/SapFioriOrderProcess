@@ -1,5 +1,39 @@
-<mvc:View controllerName="purchaseorder.controller.View1"
+<mvc:View controllerName="purchaseorder.controller.Detail"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    
+    xmlns:semantic="sap.m.semantic"
+
+    xmlns:l="sap.ui.layout"
+
+    xmlns:form="sap.ui.layout.form"
+
+    xmlns:footerbar="sap.ushell.ui.footerbar">
+
+<l:VerticalLayout width="100%" id="ObjectHeaderDetail">
+
+    <ObjectHeader id="objectHeader"
+
+    intro="{parts:[{path:'i18n>xfld.orderedBy'},{path: 'OrderedByName'}], formatter: 'jQuery.sap.formatMessage'}"
+
+    number="{parts: [ {path: 'GrossAmount'}, {path: 'CurrencyCode'}], type : 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false }}"
+
+    numberUnit="{CurrencyCode}" responsive="true" title="{SupplierName}">
+
+        <statuses>
+
+            <ObjectStatus id="status"
+
+                text="{path: 'ChangedAt', type: 'sap.ui.model.type.Date',
+
+                formatOptions: { style: 'medium', strictParsing: true, relative: true }}"
+
+                title="{/#Z_C_PurchaseorderType/ChangedAt/@sap:label}"/>
+
+        </statuses>
+
+    </ObjectHeader>
+
+</l:VerticalLayout>
 
 </mvc:View>
