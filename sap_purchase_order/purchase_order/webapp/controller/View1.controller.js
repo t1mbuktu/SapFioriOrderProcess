@@ -3,12 +3,13 @@ sap.ui.define([
     "sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
     "sap/ui/model/json/JSONModel",
+    "sap/ui/model/odata/v2/ODataModel",
     "../util/Formatter"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, JSONModel, Formatter) {
+    function (Controller, Filter, FilterOperator, JSONModel, Formatter, ODataModel) {
         "use strict";
 
         return Controller.extend("purchaseorder.controller.View1", {
@@ -17,6 +18,25 @@ sap.ui.define([
             onInit: function () {
                 var oModel = this.getOwnerComponent().getModel();
                 var oView = this.getView();
+                
+                var sFirstPurchaseOrderPath = "/A_PurchaseOrder('4500000000')";
+
+                this.getView().byId("purchaseOrderHeader").bindElement({
+                    path: sFirstPurchaseOrderPath,
+                    parameters: {
+                        expand: "to_PurchaseOrderItem"
+                    },
+                    events: {
+                        dataRequested: function () {
+                        },
+                        dataReceived: function (oData) {
+                            if (!oData.getParameter("data")) {
+                                MessageToast.show("Purchase Order not found.");
+                            }
+                        }
+                    }
+                });
+
                 oView.setModel(oModel);
 
                 var oViewModel = new JSONModel({
