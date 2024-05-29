@@ -17,7 +17,6 @@ sap.ui.define([
             onInit: function () {
                 var oModel = this.getOwnerComponent().getModel();
                 var oView = this.getView();
-
                 oView.setModel(oModel);
 
                 var oViewModel = new JSONModel({

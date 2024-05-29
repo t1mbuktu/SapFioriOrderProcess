@@ -95,31 +95,9 @@
       "routes": [
         {
           "name": "RouteView1",
-          "pattern": "view1",
-          "target": [
-            "TargetView1"
-          ]
-        },
-        {
-					"pattern": ":layout:",
-					"name": "list",
-					"target": [
-						"TargetListView",
-						"TargetDetailView"
-					]
-				},
-        {
-          "name": "ListView",
-          "pattern": "ListView",
-          "target": [
-            "TargetListView"
-          ]
-        },
-        {
-          "name": "DetailView",
           "pattern": "",
           "target": [
-            "TargetDetailView"
+            "TargetView1"
           ]
         }
       ],
@@ -130,20 +108,6 @@
           "clearControlAggregation": false,
           "viewId": "View1",
           "viewName": "View1"
-        },
-        "TargetListView": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "List",
-          "viewName": "List"
-        },
-        "TargetDetailView": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "Detail",
-          "viewName": "Detail"
         }
       }
     },

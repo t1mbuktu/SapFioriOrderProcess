@@ -1,7 +1,50 @@
 <mvc:View controllerName="purchaseorder.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        
-    </Page>
+    <SplitApp 
+        id="SplitAppDemo" 
+        initialDetail="detail" 
+        initialMaster="list">
+        <detailPages>
+            <Page id="detail">
+                <ObjectHeader id="purchaseOrderHeader" title="{Supplier}" titleActive="true" condensed="true" number="{
+			parts:[{path:'Price'},{path:'CurrencyCode'}],
+			type: 'sap.ui.model.type.Currency',
+			formatOptions: {showMeasure: false}
+		}" numberUnit="{DocumentCurrency}" class="sapUiResponsivePadding--header">
+                    <ObjectAttribute text="{WeightMeasure} {WeightUnit} {Width} x {Depth} x {Height} {DimUnit}" />
+                </ObjectHeader>
+                <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+                    <items>
+                        <IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="">
+                            <content>
+                                <VBox alignItems="Center">
+                                    <Text text="Purchase Order: {/PurchaseOrder}" />
+                                    <Text text="Account Assignment: {/AccountAssignment}" />
+                                    <Text text="Delivery Date: {/DeliveryDate}" />
+                                    <Text text="Plant: {/Plant}" />
+                                    <Text text="Payment Terms: {/PaymentTerms}" />
+                                    <Text text="Incoterms: {/Incoterms}" />
+                                    <Text text="Company Code: {/CompanyCode}" />
+                                </VBox>
+                            </content>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+            </Page>
+        </detailPages>
+        <masterPages>    
+            <Page id="list">
+                <SearchField liveChange=".onSearch" />
+                <List id="OrdersList" items="{/A_PurchaseOrder}" headerText="Purchase Orders({viewModel>/itemCount})">
+                    <ObjectListItem title="{PurchaseOrder}" type="Active" press="onListItemPressed" number="100" numberUnit="{DocumentCurrency}">
+                        <firstStatus>
+                            <ObjectStatus text="{path: 'PurchaseOrderDate', formatter: '.formatter.dateToText'}" />
+                        </firstStatus>
+                        <ObjectAttribute text="{CreatedByUser}" />
+                    </ObjectListItem>
+                </List>
+            </Page>
+        </masterPages>
+    </SplitApp>
 </mvc:View>
