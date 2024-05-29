@@ -101,15 +101,23 @@
           ]
         },
         {
+					"pattern": ":layout:",
+					"name": "list",
+					"target": [
+						"TargetListView",
+						"TargetDetailView"
+					]
+				},
+        {
           "name": "ListView",
-          "pattern": "",
+          "pattern": "ListView",
           "target": [
             "TargetListView"
           ]
         },
         {
           "name": "DetailView",
-          "pattern": "DetailView",
+          "pattern": "",
           "target": [
             "TargetDetailView"
           ]
