@@ -63,7 +63,8 @@ sap.ui.define([
             },
 
             onListItemPressed: function (oEvent) {
-                console.log(oEvent.getSource())
+                //console.log(oEvent.getSource().getBindingContext().getObject());
+                var PurchaseOrder = oEvent.getSource().getBindingContext().getObject();
             },
 
             setItemCount: function () {
