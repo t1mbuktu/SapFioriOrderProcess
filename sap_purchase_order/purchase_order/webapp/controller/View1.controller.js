@@ -63,12 +63,13 @@ sap.ui.define([
             },
 
             onListItemPressed: function (oEvent) {
-                //console.log(oEvent.getSource().getBindingContext().getObject());
                 var oView = this.getView();
-                var PurchaseOrder = oEvent.getSource().getBindingContext().getObject();
-                var oModel = this.getOwnerComponent().getModel(`/A_PurchaseOrder('${PurchaseOrder}')`);
-                console.log(oModel);
-                oView.setModel(oModel, "selectedPurchaseOrder");
+                var purchaseOrderId = oEvent.getSource().getBindingContext().getObject().PurchaseOrder;                
+                var purchaseOrder = this.getOwnerComponent().getModel().getObject(`/A_PurchaseOrder('${purchaseOrderId}')`);
+                
+                var jsonModel = new JSONModel(purchaseOrder);
+                console.log(jsonModel)
+                this.getOwnerComponent().getModel("selectedPurchaseOrder").setData(jsonModel)
             },
 
             setItemCount: function () {

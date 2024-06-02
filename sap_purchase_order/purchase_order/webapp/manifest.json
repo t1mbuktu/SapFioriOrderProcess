@@ -73,6 +73,9 @@
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
+      },
+      "selectedPurchaseOrder" : {
+        "type" : "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {

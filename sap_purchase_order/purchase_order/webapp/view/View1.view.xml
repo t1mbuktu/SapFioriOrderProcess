@@ -7,19 +7,19 @@
         initialMaster="list">
         <detailPages>
             <Page id="detail">
-                <ObjectHeader id="purchaseOrderHeader" title="{Supplier}" titleActive="true" condensed="true" number="{
+                <ObjectHeader id="purchaseOrderHeader" title="{selectedPurchaseOrder>/oData/PurchaseOrder}" titleActive="true" condensed="true" number="{
 			parts:[{path:'Price'},{path:'CurrencyCode'}],
 			type: 'sap.ui.model.type.Currency',
 			formatOptions: {showMeasure: false}
 		}" numberUnit="{DocumentCurrency}" class="sapUiResponsivePadding--header">
-                    <ObjectAttribute text="{WeightMeasure} {WeightUnit} {Width} x {Depth} x {Height} {DimUnit}" />
+                    <ObjectAttribute text="{WeightMeasure} {WeightUnit} {Width}  {Depth}  {Height} {DimUnit}" />
                 </ObjectHeader>
                 <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
                     <items>
                         <IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="">
                             <content>
                                 <VBox alignItems="Center">
-                                    <Text text="Purchase Order: {/PurchaseOrder}" />
+                                    <Text text="Purchase Order: {/selectedPurchaseOrder/purchaseOrder}" />
                                     <Text text="Account Assignment: {/AccountAssignment}" />
                                     <Text text="Delivery Date: {/DeliveryDate}" />
                                     <Text text="Plant: {/Plant}" />
