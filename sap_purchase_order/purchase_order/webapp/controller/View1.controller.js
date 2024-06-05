@@ -77,7 +77,8 @@ sap.ui.define([
                             console.log(jsonModel);
                             that.getOwnerComponent()
                                 .getModel("selectedPurchaseOrder")
-                                .setData(jsonModel)
+                                .setData(jsonModel);
+                            that.setPurchaseOrderCounts();    
                         },
                         error: function(oError) {
                             console.log(oError);
@@ -100,6 +101,16 @@ sap.ui.define([
                     error: function () {
                     }
                 });
+            },
+
+            setPurchaseOrderCounts: function () {
+                var oModel = this.getOwnerComponent().getModel("selectedPurchaseOrder");
+                var oView = this.getView();
+                var PurchaseOrderItemsLength = oModel.oData.oData.to_PurchaseOrderItem.results.length;
+                var PurchaseOrderNotesLength = oModel.oData.oData.to_PurchaseOrderNote.results.length;
+                oView.getModel("viewModel").setProperty("/PurchaseOrderItemCount", PurchaseOrderItemsLength);
+                oView.getModel("viewModel").setProperty("/PurchaseOrderNoteCount", PurchaseOrderNotesLength);
+
             },
         });
     });

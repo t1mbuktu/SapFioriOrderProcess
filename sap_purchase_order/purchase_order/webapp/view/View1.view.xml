@@ -21,8 +21,7 @@
                                 <VBox alignItems="Center">
                                     <Text text="Purchase Order: {selectedPurchaseOrder>/oData/PurchaseOrder}" />
                                     <Text text="Account Assignment: {/AccountAssignment}" />
-                                    <Text text="Delivery Date: {/DeliveryDate}" />
-                                    <Text text="Plant: {/Plant}" />
+                                    <Text text="Delivery Date: 01.01.1970" />
                                     <Text text="Payment Terms: {/PaymentTerms}" />
                                     <Text text="Incoterms: {/Incoterms}" />
                                     <Text text="Company Code: {/CompanyCode}" />
@@ -35,7 +34,7 @@
             <Table id="productTable" sticky="HeaderToolbar">
                 <headerToolbar>
                     <Toolbar>
-                        <Title text="Items" level="H2"/>
+                        <Title text="Items({viewModel>/PurchaseOrderItemCount}) Notes: ({viewModel>/PurchaseOrderNoteCount})" level="H2"/>
                     </Toolbar>
                 </headerToolbar>
                 <columns>
