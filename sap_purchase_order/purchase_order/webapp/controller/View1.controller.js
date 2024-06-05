@@ -53,7 +53,7 @@ sap.ui.define([
                 var sQuery = oEvent.getSource().getValue();
                 console.log(sQuery);
                 if (sQuery && sQuery.length > 0) {
-                    var filter = new Filter("PurchaseOrder", FilterOperator.Contains, sQuery);
+                    var filter = new Filter("Supplier", FilterOperator.Contains, sQuery);
                     aFilters.push(filter);
                 }
 
