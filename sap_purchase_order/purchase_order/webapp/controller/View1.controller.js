@@ -3,40 +3,41 @@ sap.ui.define([
     "sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
     "sap/ui/model/json/JSONModel",
-    "../util/Formatter"
+    "../util/DateFormatter",
+    "../util/PriceFormatter"
+
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, JSONModel, Formatter) {
+    function (Controller, Filter, FilterOperator, JSONModel, DateFormatter, PriceFormatter) {
         "use strict";
 
         return Controller.extend("purchaseorder.controller.View1", {
-            Formatter: Formatter,
+            DateFormatter: DateFormatter,
+            PriceFormatter: PriceFormatter,
 
             onInit: function () {
                 var oModel = this.getOwnerComponent().getModel();
                 var oView = this.getView();
-                
-                var sFirstPurchaseOrderPath = "/A_PurchaseOrder('4500000000')";
 
-                this.getView().byId("purchaseOrderHeader").bindElement({
-                    path: sFirstPurchaseOrderPath,
-                    parameters: {
-                        expand: "to_PurchaseOrderItem"
+                const that = this;
+
+                oModel.read(`/A_PurchaseOrder`, {
+                    urlParameters: {
+                        "$expand": "to_PurchaseOrderItem,to_PurchaseOrderNote"
                     },
-                    events: {
-                        dataRequested: function () {
-                        },
-                        dataReceived: function (oData) {
-                            if (!oData.getParameter("data")) {
-                                MessageToast.show("Purchase Order not found.");
-                            }
-                        }
+                    success: function(data, response) {
+                        var jsonModel = new JSONModel(data.results);
+                        console.log(jsonModel)
+                        that.getOwnerComponent()
+                            .getModel("purchaseOrders")
+                            .setData(jsonModel);
+                    },
+                    error: function(oError) {
+                        console.log(oError);
                     }
                 });
-
-                oView.setModel(oModel);
 
                 var oViewModel = new JSONModel({
                     itemCount: 0
@@ -62,7 +63,7 @@ sap.ui.define([
             },
 
             onListItemPressed: function (oEvent) {
-                var purchaseOrderId = oEvent.getSource().getBindingContext().getObject().PurchaseOrder;                
+                var purchaseOrderId = oEvent.getSource().getBindingContext("purchaseOrders").getObject().PurchaseOrder;                
                 var oModelPurchaseOrder = this.getOwnerComponent().getModel()
                 var that = this;
                 oModelPurchaseOrder
@@ -71,9 +72,7 @@ sap.ui.define([
                             "$expand": "to_PurchaseOrderItem,to_PurchaseOrderNote"
                         },
                         success: function(data, response) {
-                            console.log(data)
                             var jsonModel = new JSONModel(data);
-                            console.log(jsonModel);
                             that.getOwnerComponent()
                                 .getModel("selectedPurchaseOrder")
                                 .setData(jsonModel);

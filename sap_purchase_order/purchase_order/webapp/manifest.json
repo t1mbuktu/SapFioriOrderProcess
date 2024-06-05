@@ -76,6 +76,9 @@
       },
       "selectedPurchaseOrder" : {
         "type" : "sap.ui.model.json.JSONModel"
+      },
+      "purchaseOrders" : {
+        "type" : "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {
