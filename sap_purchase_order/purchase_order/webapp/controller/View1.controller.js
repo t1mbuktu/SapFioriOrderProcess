@@ -123,5 +123,9 @@ sap.ui.define([
                 oView.getModel("viewModel").setProperty("/PurchaseOrderNoteCount", PurchaseOrderNotesLength);
 
             },
+
+            onPurchaseOrderItemPressed: function (oEvent){
+                //ToDo
+            }
         });
     });

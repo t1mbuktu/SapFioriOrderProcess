@@ -8,12 +8,8 @@
         <detailPages>
             <Page id="detail">
                 <ObjectHeader id="purchaseOrderHeader" title="{selectedPurchaseOrder>/oData/PurchaseOrder}" titleActive="true" condensed="true" 
-                number="{
-			        parts:[{path:'Price'},{path:'selectedPurchaseOrder>/oData/DocumentCurrency'}],
-			        type: 'sap.ui.model.type.Currency',
-			        formatOptions: {showMeasure: false}
-		        }" 
-                numberUnit="{DocumentCurrency}"  
+                number="{path: 'selectedPurchaseOrder>/oData/to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}"
+                numberUnit="{selectedPurchaseOrder>/oData/DocumentCurrency}"  
                 class="sapUiResponsivePadding--header">
                 <ObjectAttribute text="Test" />
 			    <ObjectAttribute text="Test2" />
@@ -57,7 +53,7 @@
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem>
+                    <ColumnListItem type="Navigation" press="onPurchaseOrderItemPressed">
                         <cells>
                             <Text text="{formattedPurchaseOrderItems>PurchaseOrderItemText}" />
                             <Text text="Standard" />
