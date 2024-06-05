@@ -69,7 +69,7 @@ sap.ui.define([
                 oModelPurchaseOrder
                     .read(`/A_PurchaseOrder('${purchaseOrderId}')`, {
                         urlParameters: {
-                            "$expand": "to_PurchaseOrderItem"
+                            "$expand": "to_PurchaseOrderItem,to_PurchaseOrderNote"
                         },
                         success: function(data, response) {
                             console.log(data)
