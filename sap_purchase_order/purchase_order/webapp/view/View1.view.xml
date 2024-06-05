@@ -63,10 +63,10 @@
         <masterPages>    
             <Page id="list">
                 <SearchField liveChange=".onSearch" />
-                <List id="OrdersList" items="{/A_PurchaseOrder}" headerText="Purchase Orders({viewModel>/itemCount})">
-                    <ObjectListItem title="{PurchaseOrder}" type="Active" press="onListItemPressed" number="100" numberUnit="{DocumentCurrency}">
+                <List id="OrdersList" items="{/A_PurchaseOrder}" headerText="Purchase Orders ({viewModel>/itemCount})">
+                    <ObjectListItem title="{Supplier}" type="Active" press="onListItemPressed" number="100" numberUnit="{DocumentCurrency}">
                         <firstStatus>
-                            <ObjectStatus text="{path: 'PurchaseOrderDate', formatter: '.formatter.dateToText'}" />
+                            <ObjectStatus text="{path: 'PurchaseOrderDate', type: 'sap.ui.model.type.Date', formatter: '.Formatter.dateToText'}" />
                         </firstStatus>
                         <ObjectAttribute text="{CreatedByUser}" />
                     </ObjectListItem>

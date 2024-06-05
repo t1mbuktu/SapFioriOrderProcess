@@ -3,17 +3,16 @@ sap.ui.define([
     "sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/model/odata/v2/ODataModel",
     "../util/Formatter"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, JSONModel, Formatter, ODataModel) {
+    function (Controller, Filter, FilterOperator, JSONModel, Formatter) {
         "use strict";
 
         return Controller.extend("purchaseorder.controller.View1", {
-            formatter: Formatter,
+            Formatter: Formatter,
 
             onInit: function () {
                 var oModel = this.getOwnerComponent().getModel();
