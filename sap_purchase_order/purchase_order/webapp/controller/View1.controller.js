@@ -63,13 +63,29 @@ sap.ui.define([
             },
 
             onListItemPressed: function (oEvent) {
-                var oView = this.getView();
                 var purchaseOrderId = oEvent.getSource().getBindingContext().getObject().PurchaseOrder;                
-                var purchaseOrder = this.getOwnerComponent().getModel().getObject(`/A_PurchaseOrder('${purchaseOrderId}')`);
-                
-                var jsonModel = new JSONModel(purchaseOrder);
-                console.log(jsonModel)
-                this.getOwnerComponent().getModel("selectedPurchaseOrder").setData(jsonModel)
+                var oModelPurchaseOrder = this.getOwnerComponent().getModel()
+                var that = this;
+                oModelPurchaseOrder
+                    .read(`/A_PurchaseOrder('${purchaseOrderId}')`, {
+                        urlParameters: {
+                            "$expand": "to_PurchaseOrderItem"
+                        },
+                        success: function(data, response) {
+                            console.log(data)
+                            var jsonModel = new JSONModel(data);
+                            console.log(jsonModel);
+                            that.getOwnerComponent()
+                                .getModel("selectedPurchaseOrder")
+                                .setData(jsonModel)
+                        },
+                        error: function(oError) {
+                            console.log(oError);
+                        }
+                    })
+
+               
+               
             },
 
             setItemCount: function () {

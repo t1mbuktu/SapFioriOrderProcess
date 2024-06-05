@@ -19,7 +19,7 @@
                         <IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="">
                             <content>
                                 <VBox alignItems="Center">
-                                    <Text text="Purchase Order: {/selectedPurchaseOrder/purchaseOrder}" />
+                                    <Text text="Purchase Order: {selectedPurchaseOrder>/oData/PurchaseOrder}" />
                                     <Text text="Account Assignment: {/AccountAssignment}" />
                                     <Text text="Delivery Date: {/DeliveryDate}" />
                                     <Text text="Plant: {/Plant}" />
