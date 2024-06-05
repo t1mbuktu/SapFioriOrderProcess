@@ -77,7 +77,20 @@ sap.ui.define([
                             that.getOwnerComponent()
                                 .getModel("selectedPurchaseOrder")
                                 .setData(jsonModel);
-                            that.setPurchaseOrderCounts();    
+                            that.setPurchaseOrderCounts(); 
+                            
+                            var purchaseOrderItems = data.to_PurchaseOrderItem.results;
+                            var formattedPurchaseOrderItems = purchaseOrderItems.map(function(item) {
+                                return {
+                                    PurchaseOrderItemText: item.PurchaseOrderItemText,
+                                    OrderQuantity: item.OrderQuantity,
+                                    NetPriceAmount: item.NetPriceAmount
+                                };
+                            });
+
+                            var formattedModel = new JSONModel(formattedPurchaseOrderItems);
+                            that.getView().setModel(formattedModel, "formattedPurchaseOrderItems");
+                            console.log(formattedPurchaseOrderItems);
                         },
                         error: function(oError) {
                             console.log(oError);

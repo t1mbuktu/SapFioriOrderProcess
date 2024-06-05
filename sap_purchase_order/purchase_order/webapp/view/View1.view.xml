@@ -22,16 +22,16 @@
                                     <Text text="Purchase Order: {selectedPurchaseOrder>/oData/PurchaseOrder}" />
                                     <Text text="Account Assignment: {/AccountAssignment}" />
                                     <Text text="Delivery Date: 01.01.1970" />
-                                    <Text text="Payment Terms: {/PaymentTerms}" />
-                                    <Text text="Incoterms: {/Incoterms}" />
-                                    <Text text="Company Code: {/CompanyCode}" />
+                                    <Text text="Payment Terms: {selectedPurchaseOrder>/oData/PaymentTerms}" />
+                                    <Text text="Incoterms: {selectedPurchaseOrder>/oData/IncotermsClassification} {selectedPurchaseOrder>/oData/IncotermsVersion} {selectedPurchaseOrder>/oData/Location1} {selectedPurchaseOrder>/oData/Location2}" />
+                                    <Text text="Company Code: {selectedPurchaseOrder>/oData/CompanyCode}" />
                                 </VBox>
                             </content>
                         </IconTabFilter>
                     </items>
                 </IconTabBar>
                 
-            <Table id="productTable" sticky="HeaderToolbar">
+            <Table id="PurchaseOrderItemTable" items="{path: 'formattedPurchaseOrderItems>/'}" sticky="HeaderToolbar">
                 <headerToolbar>
                     <Toolbar>
                         <Title text="Items({viewModel>/PurchaseOrderItemCount}) Notes: ({viewModel>/PurchaseOrderNoteCount})" level="H2"/>
@@ -54,6 +54,10 @@
                 <items>
                     <ColumnListItem>
                         <cells>
+                            <Text text="{formattedPurchaseOrderItems>PurchaseOrderItemText}" />
+                            <Text text="Standard" />
+                            <Text text="{formattedPurchaseOrderItems>OrderQuantity}" />
+                            <Text text="{formattedPurchaseOrderItems>NetPriceAmount}" />
                         </cells>
                     </ColumnListItem>
                 </items>
