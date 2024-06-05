@@ -31,6 +31,34 @@
                         </IconTabFilter>
                     </items>
                 </IconTabBar>
+                
+            <Table id="productTable" sticky="HeaderToolbar">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Items" level="H2"/>
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Description"/>
+                    </Column>
+                    <Column>
+                        <Text text="Item Category"/>
+                    </Column>
+                    <Column>
+                        <Text text="Quantity"/>
+                    </Column>
+                    <Column>
+                        <Text text="Subtotal"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
             </Page>
         </detailPages>
         <masterPages>    
