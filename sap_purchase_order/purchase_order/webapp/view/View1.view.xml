@@ -19,7 +19,7 @@
                     <items>
                         <IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="">
                             <content>
-                                <VBox alignItems="Center">
+                                <VBox justifyContent="Center" alignItems="Center">
                                     <Text text="{i18n>PurchaseOrder}: {selectedPurchaseOrder>/oData/PurchaseOrder}" />
                                     <Text text="{i18n>AccountAssignment}: {/AccountAssignment}" />
                                     <Text text="{i18n>DeliveryDate}: 01.01.1970" />
@@ -27,6 +27,17 @@
                                     <Text text="{i18n>Incoterms}: {selectedPurchaseOrder>/oData/IncotermsClassification} {selectedPurchaseOrder>/oData/IncotermsVersion} {selectedPurchaseOrder>/oData/Location1} {selectedPurchaseOrder>/oData/Location2}" />
                                     <Text text="{i18n>CompanyCode}: {selectedPurchaseOrder>/oData/CompanyCode}" />
                                 </VBox>
+                                <VBox>
+                    <HBox class="sapUiSmallMarginBottom">
+                    <Text text="Purchase Order:" class="labelText"/>
+                    <Text text="Test" class="valueText"/>
+                </HBox>
+                <HBox class="sapUiSmallMarginBottom">
+                    <Text text="Account Assignment:" class="labelText"/>
+                    <Text text="Test" class="valueText"/>
+                </HBox>
+                
+            </VBox>
                             </content>
                         </IconTabFilter>
                     </items>
