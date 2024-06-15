@@ -63,6 +63,13 @@
                     </ColumnListItem>
                 </items>
             </Table>
+            <footer>
+                <OverflowToolbar class="footer">
+                    <ToolbarSpacer/>
+                    <Button text="Accept" type="Accept" press="onAccept"/>
+                    <Button text="Reject" type="Reject" press="onReject"/>
+                </OverflowToolbar>
+		    </footer>
             </Page>
         </detailPages>
         <masterPages>    
@@ -80,6 +87,9 @@
                         <ObjectAttribute text="{purchaseOrders>CreatedByUser}" />
                     </ObjectListItem>
                 </List>
+                <footer >
+                    <OverflowToolbar class="footer" />
+		        </footer>
             </Page>
         </masterPages>
     </SplitApp>
