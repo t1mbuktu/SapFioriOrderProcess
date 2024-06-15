@@ -6,15 +6,18 @@
     <SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="list">
         <detailPages>
             <Page id="detail" title="{i18n>detailsPageTitle}">
-                <ObjectHeader id="purchaseOrderHeader" title="{selectedPurchaseOrder>/oData/PurchaseOrder}" titleActive="true" condensed="true" number="{path: 'selectedPurchaseOrder>/oData/to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}" numberUnit="{selectedPurchaseOrder>/oData/DocumentCurrency}" class="sapUiResponsivePadding--header">
-                    <ObjectAttribute text="Test" />
-                    <ObjectAttribute text="Test2" />
-                    <ObjectAttribute text="Test2" />
-                    <ObjectAttribute text="{path: 'selectedPurchaseOrder>/oData/PurchaseOrderDate', type: 'sap.ui.model.type.Date', formatter: '.Formatter.dateToText' }" />
+                <ObjectHeader id="purchaseOrderHeader" title="{selectedPurchaseOrder>/oData/PurchaseOrder}" titleActive="true" condensed="false" 
+                number="{path: 'selectedPurchaseOrder>/oData/to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}"
+                numberUnit="{selectedPurchaseOrder>/oData/DocumentCurrency}"  
+                class="sapUiResponsivePadding--header">
+                    <attributes>
+                        <ObjectAttribute text="{path: 'selectedPurchaseOrder>/oData/PurchaseOrderDate', type: 'sap.ui.model.type.Date', formatter: '.Formatter.dateToText' }" textDirection="right-to-left" />
+                        <ObjectAttribute text="{selectedPurchaseOrder>/oData/CreatedByUser}" />
+                    </attributes>
                 </ObjectHeader>
                 <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
                     <items>
-                        <IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="">
+                        <IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="" headerBackgroundDesign="solid">
                             <content>
                                 <VBox>
                                     <HBox class="sapUiSmallMarginBottom">
@@ -43,6 +46,8 @@
                                     </HBox>
                                 </VBox>
                             </content>
+                        </IconTabFilter>
+                        <IconTabFilter id="iconTabBarFilter2" icon="sap-icon://accelerated" tooltip="">
                         </IconTabFilter>
                     </items>
                 </IconTabBar>
