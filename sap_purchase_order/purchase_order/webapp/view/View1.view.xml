@@ -1,4 +1,6 @@
-<mvc:View controllerName="purchaseorder.controller.View1"
+<mvc:View xmlns:uxap="sap.uxap" controllerName="purchaseorder.controller.View1"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
     <SplitApp 
@@ -56,13 +58,50 @@
                     <ColumnListItem type="Navigation" press="onPurchaseOrderItemPressed">
                         <cells>
                             <Text text="{formattedPurchaseOrderItems>PurchaseOrderItemText}" />
-                            <Text text="Standard" />
+                            <Text text="{formattedPurchaseOrderItems>PurchaseOrderItemCategory}" />
                             <Text text="{formattedPurchaseOrderItems>OrderQuantity}" />
                             <Text text="{formattedPurchaseOrderItems>NetPriceAmount}" />
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
+            </Page>
+            <Page id="purchaseOrderItemDetail" title="Purchase Order Item Details" showHeader="false">
+            <Toolbar>
+                    <Button icon="sap-icon://nav-back" press="onPressNavBack"/>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://navigation-up-arrow" press="onPressNavPrevious"/>
+                    <Button icon="sap-icon://navigation-down-arrow" press="onPressNavNext"/>
+                </Toolbar>
+                <ObjectHeader id="purchaseOrderItemHeader" title="{selectedPurchaseOrderItem>/PurchaseOrderItemText}" titleActive="false" condensed="false" 
+                number="{path: 'selectedPurchaseOrderItem>/NetPriceAmount', formatter: '.formatPrice'}"
+                numberUnit="{selectedPurchaseOrderItem>/DocumentCurrency}" 
+                class="sapUiResponsivePadding--header">
+                <attributes>
+                    <ObjectAttribute text="{selectedPurchaseOrderItem>/OrderQuantity} {selectedPurchaseOrderItem>/PurchaseOrderQuantityUnit}" />
+			        <ObjectAttribute text="Standard" />
+                    <ObjectAttribute text="Purchase Order Item {selectedPurchaseOrderItem>/PurchaseOrderItem} / {viewModel>/PurchaseOrderItemCount}" />
+                </attributes>
+                </ObjectHeader>
+                <Panel headerText="Information">
+                <FlexBox alignItems="Center" justifyContent="Center">
+                    <Text text="Material Group: {selectedPurchaseOrderItem>/MaterialGroup}"/>
+                </FlexBox>
+                </Panel>
+                <Panel headerText="Delivery on January 01, 1970">
+                <FlexBox direction="Column" alignItems="Center">
+                    <Text text="Plant: {selectedPurchaseOrderItem>/Plant}"/>
+                    <Text text=" "/>
+                    <Text text="Address: {selectedPurchaseOrderItem>/DeliveryAddressFullName} {selectedPurchaseOrderItem>/DeliveryAddressHouseNumber} {selectedPurchaseOrderItem>/DeliveryAddressStreetName}, {selectedPurchaseOrderItem>/DeliveryAddressCityName} {selectedPurchaseOrderItem>/DeliveryAddressRegion} {selectedPurchaseOrderItem>/DeliveryAddressPostalCode}, {selectedPurchaseOrderItem>/DeliveryAddressCountry}"/>
+                </FlexBox>
+                </Panel>
+                <Panel headerText="Dimensions">
+                <FlexBox direction="Column" alignItems="Center">
+                    <Text text="Net Weight: {selectedPurchaseOrderItem>/ItemNetWeight} {selectedPurchaseOrderItem>/ItemWeightUnit}"/>
+                    <Text text=" "/>
+                    <Text text="Volume: {selectedPurchaseOrderItem>/ItemVolume} {selectedPurchaseOrderItem>/ItemVolumeUnit}"/>
+                </FlexBox>
+                </Panel>
             </Page>
         </detailPages>
         <masterPages>    

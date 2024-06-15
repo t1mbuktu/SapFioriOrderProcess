@@ -81,15 +81,45 @@ sap.ui.define([
                             var purchaseOrderItems = data.to_PurchaseOrderItem.results;
                             var formattedPurchaseOrderItems = purchaseOrderItems.map(function(item) {
                                 return {
-                                    PurchaseOrderItemText: item.PurchaseOrderItemText,
+                                    Customer: item.Customer,
+                                    DeliveryAddressCityName: item.DeliveryAddressCityName,
+                                    DeliveryAddressCountry: item.DeliveryAddressCountry,
+                                    DeliveryAddressID: item.DeliveryAddressID,
+                                    DeliveryAddressFullName: item.DeliveryAddressFullName,
+                                    DeliveryAddressHouseNumber: item.DeliveryAddressHouseNumber,
+                                    DeliveryAddressName: item.DeliveryAddressName,
+                                    DeliveryAddressPostalCode: item.DeliveryAddressPostalCode,
+                                    DeliveryAddressRegion: item.DeliveryAddressRegion,
+                                    DeliveryAddressStreetName: item.DeliveryAddressStreetName,
+                                    DocumentCurrency: item.DocumentCurrency,
+                                    ItemNetWeight: item.ItemNetWeight,
+                                    ItemVolume: item.ItemVolume,
+                                    ItemVolumeUnit: item.ItemVolumeUnit,
+                                    ItemWeightUnit: item.ItemWeightUnit,
+                                    Material: item.Material,
+                                    MaterialGroup: item.MaterialGroup,
+                                    NetPriceAmount: item.NetPriceAmount,
+                                    OrderPriceUnit: item.OrderPriceUnit,
                                     OrderQuantity: item.OrderQuantity,
-                                    NetPriceAmount: item.NetPriceAmount
+                                    Plant: item.Plant,
+                                    PurchaseOrder: item.PurchaseOrder,
+                                    PurchaseOrderItem: item.PurchaseOrderItem,
+                                    PurchaseOrderItemText: item.PurchaseOrderItemText,
+                                    PurchaseOrderItemCategory: item.PurchaseOrderItemCategory,
+                                    PurchaseOrderQuantityUnit: item.PurchaseOrderQuantityUnit,
+                                    PurchasingInfoRecord: item.PurchasingInfoRecord,
+                                    ReferenceDeliveryAddressID: item.ReferenceDeliveryAddressID,
+                                    StorageLocation: item.StorageLocation,
+                                    TaxCode: item.TaxCode
                                 };
                             });
 
                             var formattedModel = new JSONModel(formattedPurchaseOrderItems);
                             that.getView().setModel(formattedModel, "formattedPurchaseOrderItems");
                             console.log(formattedPurchaseOrderItems);
+
+                            that.getView().getModel("viewModel").setProperty("/currentItemIndex", 0);
+                            that.updateSelectedPurchaseOrderItem(0);
                         },
                         error: function(oError) {
                             console.log(oError);
@@ -125,7 +155,52 @@ sap.ui.define([
             },
 
             onPurchaseOrderItemPressed: function (oEvent){
-                //ToDo
+                var oSelectedItem = oEvent.getSource().getBindingContext("formattedPurchaseOrderItems").getObject();
+                console.log(oSelectedItem);
+                var oSelectedItemModel = new JSONModel(oSelectedItem);
+                this.getView().setModel(oSelectedItemModel, "selectedPurchaseOrderItem");
+                this.getSplitAppObj().to(this.createId("purchaseOrderItemDetail"));
+                console.log("Selected Item Model:", oSelectedItemModel.getData());
+            },
+
+            onPressNavBack: function(oEvent) {
+                this.getSplitAppObj().backDetail();
+            },
+
+            onPressNavNext: function(oEvent) {
+                var oViewModel = this.getView().getModel("viewModel");
+                var currentIndex = oViewModel.getProperty("/currentItemIndex");
+                var itemCount = oViewModel.getProperty("/PurchaseOrderItemCount");
+                if (currentIndex < itemCount - 1) {
+                    currentIndex++;
+                    this.updateSelectedPurchaseOrderItem(currentIndex);
+                    oViewModel.setProperty("/currentItemIndex", currentIndex);
+                }
+            },
+
+            onPressNavPrevious: function(oEvent) {
+                var oViewModel = this.getView().getModel("viewModel");
+                var currentIndex = oViewModel.getProperty("/currentItemIndex");
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    this.updateSelectedPurchaseOrderItem(currentIndex);
+                    oViewModel.setProperty("/currentItemIndex", currentIndex);
+                }
+            },
+
+            updateSelectedPurchaseOrderItem: function(index) {
+                var oFormattedItems = this.getView().getModel("formattedPurchaseOrderItems").getData();
+                var selectedItem = oFormattedItems[index];
+                var jsonModel = new JSONModel(selectedItem);
+                this.getView().setModel(jsonModel, "selectedPurchaseOrderItem");
+            },
+
+            getSplitAppObj: function () {
+                var result = this.byId("SplitAppDemo");
+                if (!result) {
+                    Log.info("SplitApp object can't be found");
+                }
+                return result;
             }
         });
     });
