@@ -6,7 +6,7 @@
         initialDetail="detail" 
         initialMaster="list">
         <detailPages>
-            <Page id="detail">
+            <Page id="detail" title="{i18n>detailsPageTitle}">
                 <ObjectHeader id="purchaseOrderHeader" title="{selectedPurchaseOrder>/oData/PurchaseOrder}" titleActive="true" condensed="true" 
                 number="{path: 'selectedPurchaseOrder>/oData/to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}"
                 numberUnit="{selectedPurchaseOrder>/oData/DocumentCurrency}"  
@@ -66,9 +66,9 @@
             </Page>
         </detailPages>
         <masterPages>    
-            <Page id="list">
+            <Page id="list" title="{i18n>listPageTitle} ({viewModel>/itemCount})">
                 <SearchField liveChange=".onSearch" />
-                <List id="OrdersList" items="{purchaseOrders>/oData}" headerText="Purchase Orders ({viewModel>/itemCount})">
+                <List id="OrdersList" items="{purchaseOrders>/oData}" >
                     <ObjectListItem 
                         title="{purchaseOrders>Supplier}" 
                         type="Active" press="onListItemPressed" 
