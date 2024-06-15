@@ -15,40 +15,47 @@
                 class="sapUiResponsivePadding--header">
                 <ObjectAttribute text="Test" />
 			    <ObjectAttribute text="Test2" />
-                    <ObjectAttribute text="{path: 'selectedPurchaseOrder>/oData/PurchaseOrderDate', type: 'sap.ui.model.type.Date', formatter: '.Formatter.dateToText' }" />
+                <ObjectAttribute text="Test2" />
+                <ObjectAttribute text="{path: 'selectedPurchaseOrder>/oData/PurchaseOrderDate', type: 'sap.ui.model.type.Date', formatter: '.Formatter.dateToText' }" />
                 </ObjectHeader>
                 <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
                     <items>
                         <IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="">
-                            <content>
-                                <VBox justifyContent="Center" alignItems="Center">
-                                    <Text text="{i18n>PurchaseOrder}: {selectedPurchaseOrder>/oData/PurchaseOrder}" />
-                                    <Text text="{i18n>AccountAssignment}: {/AccountAssignment}" />
-                                    <Text text="{i18n>DeliveryDate}: 01.01.1970" />
-                                    <Text text="{i18n>PaymentTerms}: {selectedPurchaseOrder>/oData/PaymentTerms}" />
-                                    <Text text="{i18n>Incoterms}: {selectedPurchaseOrder>/oData/IncotermsClassification} {selectedPurchaseOrder>/oData/IncotermsVersion} {selectedPurchaseOrder>/oData/Location1} {selectedPurchaseOrder>/oData/Location2}" />
-                                    <Text text="{i18n>CompanyCode}: {selectedPurchaseOrder>/oData/CompanyCode}" />
-                                </VBox>
+                            <content class="centerContent">
                                 <VBox>
-                    <HBox class="sapUiSmallMarginBottom">
-                    <Text text="Purchase Order:" class="labelText"/>
-                    <Text text="Test" class="valueText"/>
-                </HBox>
-                <HBox class="sapUiSmallMarginBottom">
-                    <Text text="Account Assignment:" class="labelText"/>
-                    <Text text="Test" class="valueText"/>
-                </HBox>
-                
-            </VBox>
+                                    <HBox class="sapUiSmallMarginBottom">
+                                        <Text text="{i18n>PurchaseOrder}:" class="labelText"/>
+                                        <Text text="{selectedPurchaseOrder>/oData/PurchaseOrder}" class="valueText"/>
+                                    </HBox>
+                                    <HBox class="sapUiSmallMarginBottom">
+                                        <Text text="{i18n>AccountAssignment}:" class="labelText"/>
+                                        <Text text="{/AccountAssignment}" class="valueText"/>
+                                    </HBox>
+                                    <HBox class="sapUiSmallMarginBottom">
+                                        <Text text="{i18n>DeliveryDate}:" class="labelText"/>
+                                        <Text text="01.01.1970" class="valueText"/>
+                                    </HBox>
+                                    <HBox class="sapUiSmallMarginBottom">
+                                        <Text text="{i18n>PaymentTerms}:" class="labelText"/>
+                                        <Text text="{selectedPurchaseOrder>/oData/PaymentTerms}" class="valueText"/>
+                                    </HBox>
+                                    <HBox class="sapUiSmallMarginBottom">
+                                        <Text text="{i18n>Incoterms}:" class="labelText"/>
+                                        <Text text="{selectedPurchaseOrder>/oData/IncotermsClassification} {selectedPurchaseOrder>/oData/IncotermsVersion} {selectedPurchaseOrder>/oData/Location1} {selectedPurchaseOrder>/oData/Location2}" class="valueText"/>
+                                    </HBox>
+                                    <HBox class="sapUiSmallMarginBottom">
+                                        <Text text="{i18n>CompanyCode}:" class="labelText"/>
+                                        <Text text="{selectedPurchaseOrder>/oData/CompanyCode}" class="valueText"/>
+                                    </HBox>
+                                </VBox>
                             </content>
                         </IconTabFilter>
                     </items>
                 </IconTabBar>
-                
             <Table id="PurchaseOrderItemTable" items="{path: 'formattedPurchaseOrderItems>/'}" sticky="HeaderToolbar">
                 <headerToolbar>
                     <Toolbar>
-                        <Title text="Items({viewModel>/PurchaseOrderItemCount}) Notes: ({viewModel>/PurchaseOrderNoteCount})" level="H2"/>
+                        <Title text="Items ({viewModel>/PurchaseOrderItemCount})" level="H2"/>
                     </Toolbar>
                 </headerToolbar>
                 <columns>
