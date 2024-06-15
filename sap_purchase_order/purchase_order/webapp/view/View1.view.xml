@@ -20,12 +20,12 @@
                         <IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="">
                             <content>
                                 <VBox alignItems="Center">
-                                    <Text text="Purchase Order: {selectedPurchaseOrder>/oData/PurchaseOrder}" />
-                                    <Text text="Account Assignment: {/AccountAssignment}" />
-                                    <Text text="Delivery Date: 01.01.1970" />
-                                    <Text text="Payment Terms: {selectedPurchaseOrder>/oData/PaymentTerms}" />
-                                    <Text text="Incoterms: {selectedPurchaseOrder>/oData/IncotermsClassification} {selectedPurchaseOrder>/oData/IncotermsVersion} {selectedPurchaseOrder>/oData/Location1} {selectedPurchaseOrder>/oData/Location2}" />
-                                    <Text text="Company Code: {selectedPurchaseOrder>/oData/CompanyCode}" />
+                                    <Text text="{i18n>PurchaseOrder}: {selectedPurchaseOrder>/oData/PurchaseOrder}" />
+                                    <Text text="{i18n>AccountAssignment}: {/AccountAssignment}" />
+                                    <Text text="{i18n>DeliveryDate}: 01.01.1970" />
+                                    <Text text="{i18n>PaymentTerms}: {selectedPurchaseOrder>/oData/PaymentTerms}" />
+                                    <Text text="{i18n>Incoterms}: {selectedPurchaseOrder>/oData/IncotermsClassification} {selectedPurchaseOrder>/oData/IncotermsVersion} {selectedPurchaseOrder>/oData/Location1} {selectedPurchaseOrder>/oData/Location2}" />
+                                    <Text text="{i18n>CompanyCode}: {selectedPurchaseOrder>/oData/CompanyCode}" />
                                 </VBox>
                             </content>
                         </IconTabFilter>
@@ -40,16 +40,16 @@
                 </headerToolbar>
                 <columns>
                     <Column>
-                        <Text text="Description"/>
+                        <Text text="{i18n>Description}"/>
                     </Column>
                     <Column>
-                        <Text text="Item Category"/>
+                        <Text text="{i18n>ItemCategory}"/>
                     </Column>
                     <Column>
-                        <Text text="Quantity"/>
+                        <Text text="{i18n>Quantity}"/>
                     </Column>
                     <Column>
-                        <Text text="Subtotal"/>
+                        <Text text="{i18n>Subtotal}"/>
                     </Column>
                 </columns>
                 <items>
