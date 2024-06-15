@@ -8,7 +8,7 @@
         initialDetail="detail" 
         initialMaster="list">
         <detailPages>
-            <Page id="detail">
+            <Page id="detail" title="{i18n>detailsPageTitle}">
                 <ObjectHeader id="purchaseOrderHeader" title="{selectedPurchaseOrder>/oData/PurchaseOrder}" titleActive="true" condensed="true" 
                 number="{path: 'selectedPurchaseOrder>/oData/to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}"
                 numberUnit="{selectedPurchaseOrder>/oData/DocumentCurrency}"  
@@ -21,14 +21,25 @@
                     <items>
                         <IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="">
                             <content>
-                                <VBox alignItems="Center">
-                                    <Text text="Purchase Order: {selectedPurchaseOrder>/oData/PurchaseOrder}" />
-                                    <Text text="Account Assignment: {/AccountAssignment}" />
-                                    <Text text="Delivery Date: 01.01.1970" />
-                                    <Text text="Payment Terms: {selectedPurchaseOrder>/oData/PaymentTerms}" />
-                                    <Text text="Incoterms: {selectedPurchaseOrder>/oData/IncotermsClassification} {selectedPurchaseOrder>/oData/IncotermsVersion} {selectedPurchaseOrder>/oData/Location1} {selectedPurchaseOrder>/oData/Location2}" />
-                                    <Text text="Company Code: {selectedPurchaseOrder>/oData/CompanyCode}" />
+                                <VBox justifyContent="Center" alignItems="Center">
+                                    <Text text="{i18n>PurchaseOrder}: {selectedPurchaseOrder>/oData/PurchaseOrder}" />
+                                    <Text text="{i18n>AccountAssignment}: {/AccountAssignment}" />
+                                    <Text text="{i18n>DeliveryDate}: 01.01.1970" />
+                                    <Text text="{i18n>PaymentTerms}: {selectedPurchaseOrder>/oData/PaymentTerms}" />
+                                    <Text text="{i18n>Incoterms}: {selectedPurchaseOrder>/oData/IncotermsClassification} {selectedPurchaseOrder>/oData/IncotermsVersion} {selectedPurchaseOrder>/oData/Location1} {selectedPurchaseOrder>/oData/Location2}" />
+                                    <Text text="{i18n>CompanyCode}: {selectedPurchaseOrder>/oData/CompanyCode}" />
                                 </VBox>
+                                <VBox>
+                    <HBox class="sapUiSmallMarginBottom">
+                    <Text text="Purchase Order:" class="labelText"/>
+                    <Text text="Test" class="valueText"/>
+                </HBox>
+                <HBox class="sapUiSmallMarginBottom">
+                    <Text text="Account Assignment:" class="labelText"/>
+                    <Text text="Test" class="valueText"/>
+                </HBox>
+                
+            </VBox>
                             </content>
                         </IconTabFilter>
                     </items>
@@ -42,16 +53,16 @@
                 </headerToolbar>
                 <columns>
                     <Column>
-                        <Text text="Description"/>
+                        <Text text="{i18n>Description}"/>
                     </Column>
                     <Column>
-                        <Text text="Item Category"/>
+                        <Text text="{i18n>ItemCategory}"/>
                     </Column>
                     <Column>
-                        <Text text="Quantity"/>
+                        <Text text="{i18n>Quantity}"/>
                     </Column>
                     <Column>
-                        <Text text="Subtotal"/>
+                        <Text text="{i18n>Subtotal}"/>
                     </Column>
                 </columns>
                 <items>
@@ -65,6 +76,13 @@
                     </ColumnListItem>
                 </items>
             </Table>
+            <footer>
+                <OverflowToolbar class="footer">
+                    <ToolbarSpacer/>
+                    <Button text="Accept" type="Accept" press="onAccept"/>
+                    <Button text="Reject" type="Reject" press="onReject"/>
+                </OverflowToolbar>
+		    </footer>
             </Page>
             <Page id="purchaseOrderItemDetail" title="Purchase Order Item Details" showHeader="false">
             <Toolbar>
@@ -105,9 +123,9 @@
             </Page>
         </detailPages>
         <masterPages>    
-            <Page id="list">
+            <Page id="list" title="{i18n>listPageTitle} ({viewModel>/itemCount})">
                 <SearchField liveChange=".onSearch" />
-                <List id="OrdersList" items="{purchaseOrders>/oData}" headerText="Purchase Orders ({viewModel>/itemCount})">
+                <List id="OrdersList" items="{purchaseOrders>/oData}" >
                     <ObjectListItem 
                         title="{purchaseOrders>Supplier}" 
                         type="Active" press="onListItemPressed" 
@@ -119,6 +137,9 @@
                         <ObjectAttribute text="{purchaseOrders>CreatedByUser}" />
                     </ObjectListItem>
                 </List>
+                <footer >
+                    <OverflowToolbar class="footer" />
+		        </footer>
             </Page>
         </masterPages>
     </SplitApp>

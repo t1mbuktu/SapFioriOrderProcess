@@ -1,1 +1,15 @@
 /* Enter your custom styles here */
+.footer {
+    background-color: #354a5f !important;
+}
+
+.labelText {
+    text-align: right!important;
+    width: 200px !important; /* oder eine andere feste Breite */
+    padding-right: 10px;
+    color: gray;
+}
+
+.valueText {
+    text-align: left;
+}
