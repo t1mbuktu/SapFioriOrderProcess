@@ -3,25 +3,19 @@
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-    <SplitApp 
-        id="SplitAppDemo" 
-        initialDetail="detail" 
-        initialMaster="list">
+    <SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="list">
         <detailPages>
             <Page id="detail" title="{i18n>detailsPageTitle}">
-                <ObjectHeader id="purchaseOrderHeader" title="{selectedPurchaseOrder>/oData/PurchaseOrder}" titleActive="true" condensed="true" 
-                number="{path: 'selectedPurchaseOrder>/oData/to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}"
-                numberUnit="{selectedPurchaseOrder>/oData/DocumentCurrency}"  
-                class="sapUiResponsivePadding--header">
-                <ObjectAttribute text="Test" />
-			    <ObjectAttribute text="Test2" />
-                <ObjectAttribute text="Test2" />
-                <ObjectAttribute text="{path: 'selectedPurchaseOrder>/oData/PurchaseOrderDate', type: 'sap.ui.model.type.Date', formatter: '.Formatter.dateToText' }" />
+                <ObjectHeader id="purchaseOrderHeader" title="{selectedPurchaseOrder>/oData/PurchaseOrder}" titleActive="true" condensed="true" number="{path: 'selectedPurchaseOrder>/oData/to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}" numberUnit="{selectedPurchaseOrder>/oData/DocumentCurrency}" class="sapUiResponsivePadding--header">
+                    <ObjectAttribute text="Test" />
+                    <ObjectAttribute text="Test2" />
+                    <ObjectAttribute text="Test2" />
+                    <ObjectAttribute text="{path: 'selectedPurchaseOrder>/oData/PurchaseOrderDate', type: 'sap.ui.model.type.Date', formatter: '.Formatter.dateToText' }" />
                 </ObjectHeader>
                 <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
                     <items>
                         <IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="">
-                            <content class="centerContent">
+                            <content>
                                 <VBox>
                                     <HBox class="sapUiSmallMarginBottom">
                                         <Text text="{i18n>PurchaseOrder}:" class="labelText"/>
@@ -52,92 +46,96 @@
                         </IconTabFilter>
                     </items>
                 </IconTabBar>
-            <Table id="PurchaseOrderItemTable" items="{path: 'formattedPurchaseOrderItems>/'}" sticky="HeaderToolbar">
-                <headerToolbar>
-                    <Toolbar>
-                        <Title text="Items ({viewModel>/PurchaseOrderItemCount})" level="H2"/>
-                    </Toolbar>
-                </headerToolbar>
-                <columns>
-                    <Column>
-                        <Text text="{i18n>Description}"/>
-                    </Column>
-                    <Column>
-                        <Text text="{i18n>ItemCategory}"/>
-                    </Column>
-                    <Column>
-                        <Text text="{i18n>Quantity}"/>
-                    </Column>
-                    <Column>
-                        <Text text="{i18n>Subtotal}"/>
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem type="Navigation" press="onPurchaseOrderItemPressed">
-                        <cells>
-                            <Text text="{formattedPurchaseOrderItems>PurchaseOrderItemText}" />
-                            <Text text="{formattedPurchaseOrderItems>PurchaseOrderItemCategory}" />
-                            <Text text="{formattedPurchaseOrderItems>OrderQuantity}" />
-                            <Text text="{formattedPurchaseOrderItems>NetPriceAmount}" />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-            <footer>
-                <OverflowToolbar class="footer">
-                    <ToolbarSpacer/>
-                    <Button text="Accept" type="Accept" press="onAccept"/>
-                    <Button text="Reject" type="Reject" press="onReject"/>
-                </OverflowToolbar>
-		    </footer>
+                <Table id="PurchaseOrderItemTable" items="{path: 'formattedPurchaseOrderItems>/'}" sticky="HeaderToolbar">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="Items ({viewModel>/PurchaseOrderItemCount})" level="H2"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column>
+                            <Text text="{i18n>Description}"/>
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>ItemCategory}"/>
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>Quantity}"/>
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>Subtotal}"/>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press="onPurchaseOrderItemPressed">
+                            <cells>
+                                <Text text="{formattedPurchaseOrderItems>PurchaseOrderItemText}" />
+                                <Text text="{formattedPurchaseOrderItems>PurchaseOrderItemCategory}" />
+                                <Text text="{formattedPurchaseOrderItems>OrderQuantity}" />
+                                <Text text="{formattedPurchaseOrderItems>NetPriceAmount}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <footer>
+                    <OverflowToolbar class="footer">
+                        <ToolbarSpacer/>
+                        <Button text="Accept" type="Accept" press="onAccept"/>
+                        <Button text="Reject" type="Reject" press="onReject"/>
+                    </OverflowToolbar>
+                </footer>
             </Page>
             <Page id="purchaseOrderItemDetail" title="Purchase Order Item Details" showHeader="false">
-            <Toolbar>
+                <Toolbar>
                     <Button icon="sap-icon://nav-back" press="onPressNavBack"/>
                     <ToolbarSpacer />
                     <Button icon="sap-icon://navigation-up-arrow" press="onPressNavPrevious"/>
                     <Button icon="sap-icon://navigation-down-arrow" press="onPressNavNext"/>
                 </Toolbar>
-                <ObjectHeader id="purchaseOrderItemHeader" title="{selectedPurchaseOrderItem>/PurchaseOrderItemText}" titleActive="false" condensed="false" 
-                number="{path: 'selectedPurchaseOrderItem>/NetPriceAmount', formatter: '.formatPrice'}"
-                numberUnit="{selectedPurchaseOrderItem>/DocumentCurrency}" 
-                class="sapUiResponsivePadding--header">
-                <attributes>
-                    <ObjectAttribute text="{selectedPurchaseOrderItem>/OrderQuantity} {selectedPurchaseOrderItem>/PurchaseOrderQuantityUnit}" />
-			        <ObjectAttribute text="Standard" />
-                    <ObjectAttribute text="Purchase Order Item {selectedPurchaseOrderItem>/PurchaseOrderItem} / {viewModel>/PurchaseOrderItemCount}" />
-                </attributes>
+                <ObjectHeader id="purchaseOrderItemHeader" title="{selectedPurchaseOrderItem>/PurchaseOrderItemText}" titleActive="false" condensed="false" number="{path: 'selectedPurchaseOrderItem>/NetPriceAmount', formatter: '.formatPrice'}" numberUnit="{selectedPurchaseOrderItem>/DocumentCurrency}" class="sapUiResponsivePadding--header">
+                    <attributes>
+                        <ObjectAttribute text="{selectedPurchaseOrderItem>/OrderQuantity} {selectedPurchaseOrderItem>/PurchaseOrderQuantityUnit}" />
+                        <ObjectAttribute text="Standard" />
+                        <ObjectAttribute text="Purchase Order Item {selectedPurchaseOrderItem>/PurchaseOrderItem} / {viewModel>/PurchaseOrderItemCount}" />
+                    </attributes>
                 </ObjectHeader>
                 <Panel headerText="Information">
-                <FlexBox alignItems="Center" justifyContent="Center">
-                    <Text text="Material Group: {selectedPurchaseOrderItem>/MaterialGroup}"/>
-                </FlexBox>
+                    <HBox class="sapUiSmallMarginBottom alignDetails">
+                        <Text text="Material Group:" class="labelText"/>
+                        <Text text="{selectedPurchaseOrderItem>/MaterialGroup}" class="valueText"/>
+                    </HBox>
                 </Panel>
                 <Panel headerText="Delivery on January 01, 1970">
-                <FlexBox direction="Column" alignItems="Center">
-                    <Text text="Plant: {selectedPurchaseOrderItem>/Plant}"/>
-                    <Text text=" "/>
-                    <Text text="Address: {selectedPurchaseOrderItem>/DeliveryAddressFullName} {selectedPurchaseOrderItem>/DeliveryAddressHouseNumber} {selectedPurchaseOrderItem>/DeliveryAddressStreetName}, {selectedPurchaseOrderItem>/DeliveryAddressCityName} {selectedPurchaseOrderItem>/DeliveryAddressRegion} {selectedPurchaseOrderItem>/DeliveryAddressPostalCode}, {selectedPurchaseOrderItem>/DeliveryAddressCountry}"/>
-                </FlexBox>
+                    <VBox class="alignDetails">
+                        <HBox class="sapUiSmallMarginBottom">
+                            <Text text="Plant:" class="labelText"/>
+                            <Text text="{selectedPurchaseOrderItem>/Plant}" class="valueText"/>
+                        </HBox>
+                        <HBox class="sapUiSmallMarginBottom">
+                            <Text text="Address:" class="labelText"/>
+                            <Text text="{selectedPurchaseOrderItem>/DeliveryAddressFullName} {selectedPurchaseOrderItem>/DeliveryAddressHouseNumber} {selectedPurchaseOrderItem>/DeliveryAddressStreetName}, {selectedPurchaseOrderItem>/DeliveryAddressCityName} {selectedPurchaseOrderItem>/DeliveryAddressRegion} {selectedPurchaseOrderItem>/DeliveryAddressPostalCode}, {selectedPurchaseOrderItem>/DeliveryAddressCountry}" class="valueText"/>
+                        </HBox>
+                    </VBox>
                 </Panel>
                 <Panel headerText="Dimensions">
-                <FlexBox direction="Column" alignItems="Center">
-                    <Text text="Net Weight: {selectedPurchaseOrderItem>/ItemNetWeight} {selectedPurchaseOrderItem>/ItemWeightUnit}"/>
-                    <Text text=" "/>
-                    <Text text="Volume: {selectedPurchaseOrderItem>/ItemVolume} {selectedPurchaseOrderItem>/ItemVolumeUnit}"/>
-                </FlexBox>
+                    <VBox class="alignDetails">
+                        <HBox class="sapUiSmallMarginBottom">
+                            <Text text="Net Weight:" class="labelText"/>
+                            <Text text="{selectedPurchaseOrderItem>/ItemNetWeight} {selectedPurchaseOrderItem>/ItemWeightUnit}" class="valueText"/>
+                        </HBox>
+                        <HBox class="sapUiSmallMarginBottom">
+                            <Text text="Volume:" class="labelText"/>
+                            <Text text="{selectedPurchaseOrderItem>/ItemVolume} {selectedPurchaseOrderItem>/ItemVolumeUnit}" class="valueText"/>
+                        </HBox>
+                    </VBox>
                 </Panel>
             </Page>
         </detailPages>
-        <masterPages>    
+        <masterPages>
             <Page id="list" title="{i18n>listPageTitle} ({viewModel>/itemCount})">
                 <SearchField liveChange=".onSearch" />
-                <List id="OrdersList" items="{purchaseOrders>/oData}" >
-                    <ObjectListItem 
-                        title="{purchaseOrders>Supplier}" 
-                        type="Active" press="onListItemPressed" 
-                        number="{path: 'purchaseOrders>to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}" 
-                        numberUnit="{purchaseOrders>DocumentCurrency}">
+                <List id="OrdersList" items="{purchaseOrders>/oData}">
+                    <ObjectListItem title="{purchaseOrders>Supplier}" type="Active" press="onListItemPressed" number="{path: 'purchaseOrders>to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}" numberUnit="{purchaseOrders>DocumentCurrency}">
                         <firstStatus>
                             <ObjectStatus text="{path: 'purchaseOrders>PurchaseOrderDate', type: 'sap.ui.model.type.Date', formatter: '.DateFormatter.dateToText'}" />
                         </firstStatus>
@@ -146,7 +144,7 @@
                 </List>
                 <footer >
                     <OverflowToolbar class="footer" />
-		        </footer>
+                </footer>
             </Page>
         </masterPages>
     </SplitApp>
