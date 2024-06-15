@@ -130,6 +130,14 @@ sap.ui.define([
                
             },
 
+            onApprove: function () {
+                
+            },
+
+            onReject : function () {
+
+            },
+
             setItemCount: function () {
                 var oModel = this.getOwnerComponent().getModel();
                 var oView = this.getView();
