@@ -108,13 +108,15 @@
                         <ObjectAttribute text="Purchase Order Item {selectedPurchaseOrderItem>/PurchaseOrderItem} / {viewModel>/PurchaseOrderItemCount}" />
                     </attributes>
                 </ObjectHeader>
-                <Panel headerText="Information">
-                    <HBox class="sapUiSmallMarginBottom alignDetails">
+                <Panel headerText="{i18n>Information}" class="sapUiResponsiveContentPadding">
+                    <VBox class="alignDetails">
+                    <HBox class="sapUiSmallMarginBottom">
                         <Text text="Material Group:" class="labelText"/>
                         <Text text="{selectedPurchaseOrderItem>/MaterialGroup}" class="valueText"/>
                     </HBox>
+                    </VBox>
                 </Panel>
-                <Panel headerText="Delivery on January 01, 1970">
+                <Panel headerText="{i18n>DeliveryDateOn}">
                     <VBox class="alignDetails">
                         <HBox class="sapUiSmallMarginBottom">
                             <Text text="Plant:" class="labelText"/>
@@ -126,18 +128,88 @@
                         </HBox>
                     </VBox>
                 </Panel>
-                <Panel headerText="Dimensions">
-                    <VBox class="alignDetails">
-                        <HBox class="sapUiSmallMarginBottom">
-                            <Text text="Net Weight:" class="labelText"/>
-                            <Text text="{selectedPurchaseOrderItem>/ItemNetWeight} {selectedPurchaseOrderItem>/ItemWeightUnit}" class="valueText"/>
-                        </HBox>
-                        <HBox class="sapUiSmallMarginBottom">
-                            <Text text="Volume:" class="labelText"/>
-                            <Text text="{selectedPurchaseOrderItem>/ItemVolume} {selectedPurchaseOrderItem>/ItemVolumeUnit}" class="valueText"/>
-                        </HBox>
-                    </VBox>
-                </Panel>
+                <List
+		id="NotesList"
+		items=""
+		includeItemInSelection="true">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Notes" level="H2"/>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<StandardListItem
+			title="Pls attach according ISO XXX Certificate"
+			description="James Blake"
+			icon="sap-icon://person-placeholder" />
+         <StandardListItem
+			title="Gamiso Digital Camera RLX 4507-2000"
+			description="Mary"
+			icon="sap-icon://person-placeholder" />
+	</List>
+                <Table id="AccountAssignmentTable" items="" sticky="HeaderToolbar">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="{i18n>AccountAssingment}" level="H2"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column>
+                            <Text text="{i18n>Objects}"/>
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>GLAccount}"/>
+                        </Column>
+                        <Column hAlign="End">
+                            <Text text="{i18n>Share}"/>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem vAlign="Top">
+                            <cells>
+                                <ObjectIdentifier title="{i18n>Purchasing2}" text="{i18n>CostCenter}"/>
+                                <Text text="{i18n>RawMaterials}" />
+                                <ObjectNumber
+							number="{
+								parts:[{path:'i18n>Share100'}],
+								type: 'sap.ui.model.type.Integer',
+								formatOptions: {showMeasure: false}
+							}"
+							unit="%" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <Table id="PricingConditionsTable" items="" sticky="HeaderToolbar">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="{i18n>PricingConditions}" level="H2"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column hAlign="Begin">
+                            <Text text="{i18n>Description}"/>
+                        </Column>
+                        <Column hAlign="End">
+                            <Text text="{i18n>Price}"/>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem vAlign="Top">
+                            <cells>
+                                <ObjectIdentifier title="{i18n>GrossPrice}"/>
+                                <ObjectNumber
+							number="{
+								parts:[{path:'i18n>PriceNumber'}],
+								type: 'sap.ui.model.type.Integer',
+								formatOptions: {showMeasure: false}
+							}"
+							unit="{selectedPurchaseOrder>/oData/DocumentCurrency}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
             </Page>
         </detailPages>
         <masterPages>
