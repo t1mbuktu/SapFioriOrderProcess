@@ -135,7 +135,7 @@
 		<headerToolbar>
 			<OverflowToolbar>
 				<content>
-					<Title text="Notes" level="H2"/>
+					<Title text="Notes"/>
 				</content>
 			</OverflowToolbar>
 		</headerToolbar>
@@ -151,7 +151,7 @@
                 <Table id="AccountAssignmentTable" items="" sticky="HeaderToolbar">
                     <headerToolbar>
                         <Toolbar>
-                            <Title text="{i18n>AccountAssingment}" level="H2"/>
+                            <Title text="{i18n>AccountAssingment}"/>
                         </Toolbar>
                     </headerToolbar>
                     <columns>
@@ -184,7 +184,7 @@
                 <Table id="PricingConditionsTable" items="" sticky="HeaderToolbar">
                     <headerToolbar>
                         <Toolbar>
-                            <Title text="{i18n>PricingConditions}" level="H2"/>
+                            <Title text="{i18n>PricingConditions}"/>
                         </Toolbar>
                     </headerToolbar>
                     <columns>
