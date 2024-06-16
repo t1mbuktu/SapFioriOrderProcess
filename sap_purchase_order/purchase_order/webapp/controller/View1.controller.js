@@ -100,16 +100,49 @@ sap.ui.define([
                 var oModel = this.getOwnerComponent().getModel();
                 var oModelPo = this.getView().getModel("selectedPurchaseOrder");
                 var purchaseOrderId = oModelPo.getProperty("/oData/PurchaseOrder");
-                console.log(this.getView().getModel("pSecurityToken"));
 
                 // CSRF-Token abrufen
                 var token = oModel.getSecurityToken();
+                console.log(token);
 
                 // Erstellen der URL für die POST-Anfrage
                 var sUrl = "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/release";
                 sUrl += "?sap-client=100";
                 sUrl += "&PurchaseOrder='" + purchaseOrderId + "'";
-                sUrl += "&x-csrf-token=" + token;
+
+                // Festlegen der Header für die POST-Anfrage
+                var oHeaders = {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "x-csrf-token": token
+                };
+
+                $.ajax({
+                    url: sUrl,
+                    method: "POST",
+                    headers: oHeaders,
+                    success: function (oData, response) {
+                        sap.m.MessageToast.show("Post erfolgreich!");
+                    },
+                    error: function (oError) {
+                        console.log(oError);
+                        sap.m.MessageToast.show("Post fehlgeschlagen!");
+                    }
+                });
+            },
+
+            onReject : function () {
+                var oModel = this.getOwnerComponent().getModel();
+                var oModelPo = this.getView().getModel("selectedPurchaseOrder");
+                var purchaseOrderId = oModelPo.getProperty("/oData/PurchaseOrder");
+
+                // CSRF-Token abrufen
+                var token = oModel.getSecurityToken();
+                console.log(token);
+
+                // Erstellen der URL für die POST-Anfrage
+                var sUrl = "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/reject";
+                sUrl += "?sap-client=100";
+                sUrl += "&PurchaseOrder='" + purchaseOrderId + "'";
 
                 // Festlegen der Header für die POST-Anfrage
                 var oHeaders = {
@@ -122,21 +155,14 @@ sap.ui.define([
                     url: sUrl,
                     method: "POST",
                     headers: oHeaders,
-                    data: JSON.stringify({
-                        PurchaseOrder: purchaseOrderId
-                    }),
                     success: function (oData, response) {
-                        sap.m.MessageToast.show("Post erfolgreich!");
+                        sap.m.MessageToast.show("Reject erfolgreich!");
                     },
                     error: function (oError) {
                         console.log(oError);
-                        sap.m.MessageToast.show("Post fehlgeschlagen!");
+                        sap.m.MessageToast.show("Reject fehlgeschlagen!");
                     }
                 });
-            },
-
-            onReject : function () {
-
             },
 
             setItemCount: function () {
