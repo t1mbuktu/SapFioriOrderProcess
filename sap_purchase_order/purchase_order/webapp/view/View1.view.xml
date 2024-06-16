@@ -51,7 +51,7 @@
                         </IconTabFilter>
                     </items>
                 </IconTabBar>
-                <Table id="PurchaseOrderItemTable" items="{path: 'formattedPurchaseOrderItems>/'}" sticky="HeaderToolbar">
+                <Table id="PurchaseOrderItemTable" items="{path: 'purchaseOrderItems>/'}" sticky="HeaderToolbar">
                     <headerToolbar>
                         <Toolbar>
                             <Title text="Items ({viewModel>/PurchaseOrderItemCount})" level="H2"/>
@@ -74,10 +74,10 @@
                     <items>
                         <ColumnListItem type="Navigation" press="onPurchaseOrderItemPressed">
                             <cells>
-                                <Text text="{formattedPurchaseOrderItems>PurchaseOrderItemText}" />
-                                <Text text="{formattedPurchaseOrderItems>PurchaseOrderItemCategory}" />
-                                <Text text="{formattedPurchaseOrderItems>OrderQuantity}" />
-                                <Text text="{formattedPurchaseOrderItems>NetPriceAmount}" />
+                                <Text text="{purchaseOrderItems>PurchaseOrderItemText}" />
+                                <Text text="{purchaseOrderItems>PurchaseOrderItemCategory}" />
+                                <Text text="{purchaseOrderItems>OrderQuantity}" />
+                                <Text text="{purchaseOrderItems>NetPriceAmount}" />
                             </cells>
                         </ColumnListItem>
                     </items>
@@ -140,9 +140,24 @@
             <Page id="list" title="{i18n>listPageTitle} ({viewModel>/itemCount})">
                 <SearchField liveChange=".onSearch" />
                 <List id="OrdersList" items="{purchaseOrders>/oData}">
-                    <ObjectListItem title="{purchaseOrders>Supplier}" type="Active" press="onListItemPressed" number="{path: 'purchaseOrders>to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}" numberUnit="{purchaseOrders>DocumentCurrency}">
+                    <ObjectListItem 
+                        title="{purchaseOrders>Supplier}" 
+                        type="Active" 
+                        press="onListItemPressed" 
+                        number="{
+                            path: 'purchaseOrders>to_PurchaseOrderItem/results', 
+                            formatter: '.PriceFormatter.calculateTotalNetPrice'
+                        }"
+                        numberUnit="{purchaseOrders>DocumentCurrency}"
+                    >
                         <firstStatus>
-                            <ObjectStatus text="{path: 'purchaseOrders>PurchaseOrderDate', type: 'sap.ui.model.type.Date', formatter: '.DateFormatter.dateToText'}" />
+                            <ObjectStatus 
+                                text="{
+                                    path: 'purchaseOrders>PurchaseOrderDate', 
+                                    type: 'sap.ui.model.type.Date', 
+                                    formatter: '.DateFormatter.dateToText'
+                                }"
+                            />
                         </firstStatus>
                         <ObjectAttribute text="{purchaseOrders>CreatedByUser}" />
                     </ObjectListItem>

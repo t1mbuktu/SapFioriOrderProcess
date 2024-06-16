@@ -51,7 +51,7 @@ sap.ui.define([
             onSearch: function (oEvent) {
                 var aFilters = [];
                 var sQuery = oEvent.getSource().getValue();
-                console.log(sQuery);
+
                 if (sQuery && sQuery.length > 0) {
                     var filter = new Filter("Supplier", FilterOperator.Contains, sQuery);
                     aFilters.push(filter);
@@ -78,45 +78,11 @@ sap.ui.define([
                                 .setData(jsonModel);
                             that.setPurchaseOrderCounts(); 
                             
-                            var purchaseOrderItems = data.to_PurchaseOrderItem.results;
-                            var formattedPurchaseOrderItems = purchaseOrderItems.map(function(item) {
-                                return {
-                                    Customer: item.Customer,
-                                    DeliveryAddressCityName: item.DeliveryAddressCityName,
-                                    DeliveryAddressCountry: item.DeliveryAddressCountry,
-                                    DeliveryAddressID: item.DeliveryAddressID,
-                                    DeliveryAddressFullName: item.DeliveryAddressFullName,
-                                    DeliveryAddressHouseNumber: item.DeliveryAddressHouseNumber,
-                                    DeliveryAddressName: item.DeliveryAddressName,
-                                    DeliveryAddressPostalCode: item.DeliveryAddressPostalCode,
-                                    DeliveryAddressRegion: item.DeliveryAddressRegion,
-                                    DeliveryAddressStreetName: item.DeliveryAddressStreetName,
-                                    DocumentCurrency: item.DocumentCurrency,
-                                    ItemNetWeight: item.ItemNetWeight,
-                                    ItemVolume: item.ItemVolume,
-                                    ItemVolumeUnit: item.ItemVolumeUnit,
-                                    ItemWeightUnit: item.ItemWeightUnit,
-                                    Material: item.Material,
-                                    MaterialGroup: item.MaterialGroup,
-                                    NetPriceAmount: item.NetPriceAmount,
-                                    OrderPriceUnit: item.OrderPriceUnit,
-                                    OrderQuantity: item.OrderQuantity,
-                                    Plant: item.Plant,
-                                    PurchaseOrder: item.PurchaseOrder,
-                                    PurchaseOrderItem: item.PurchaseOrderItem,
-                                    PurchaseOrderItemText: item.PurchaseOrderItemText,
-                                    PurchaseOrderItemCategory: item.PurchaseOrderItemCategory,
-                                    PurchaseOrderQuantityUnit: item.PurchaseOrderQuantityUnit,
-                                    PurchasingInfoRecord: item.PurchasingInfoRecord,
-                                    ReferenceDeliveryAddressID: item.ReferenceDeliveryAddressID,
-                                    StorageLocation: item.StorageLocation,
-                                    TaxCode: item.TaxCode
-                                };
-                            });
+                            console.log(data)
 
-                            var formattedModel = new JSONModel(formattedPurchaseOrderItems);
-                            that.getView().setModel(formattedModel, "formattedPurchaseOrderItems");
-                            console.log(formattedPurchaseOrderItems);
+                            var purchaseOrderItems = data.to_PurchaseOrderItem.results;
+                            var purchaseOrderItemsModel = new JSONModel(purchaseOrderItems);
+                            that.getView().setModel(purchaseOrderItemsModel, "purchaseOrderItems");
 
                             that.getView().getModel("viewModel").setProperty("/currentItemIndex", 0);
                             that.updateSelectedPurchaseOrderItem(0);
@@ -198,7 +164,7 @@ sap.ui.define([
             },
 
             onPurchaseOrderItemPressed: function (oEvent){
-                var oSelectedItem = oEvent.getSource().getBindingContext("formattedPurchaseOrderItems").getObject();
+                var oSelectedItem = oEvent.getSource().getBindingContext("purchaseOrderItems").getObject();
                 console.log(oSelectedItem);
                 var oSelectedItemModel = new JSONModel(oSelectedItem);
                 this.getView().setModel(oSelectedItemModel, "selectedPurchaseOrderItem");
@@ -232,7 +198,7 @@ sap.ui.define([
             },
 
             updateSelectedPurchaseOrderItem: function(index) {
-                var oFormattedItems = this.getView().getModel("formattedPurchaseOrderItems").getData();
+                var oFormattedItems = this.getView().getModel("purchaseOrderItems").getData();
                 var selectedItem = oFormattedItems[index];
                 var jsonModel = new JSONModel(selectedItem);
                 this.getView().setModel(jsonModel, "selectedPurchaseOrderItem");
