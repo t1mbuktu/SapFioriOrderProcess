@@ -100,6 +100,7 @@ sap.ui.define([
                 var oModel = this.getOwnerComponent().getModel();
                 var oModelPo = this.getView().getModel("selectedPurchaseOrder");
                 var purchaseOrderId = oModelPo.getProperty("/oData/PurchaseOrder");
+                console.log(purchaseOrderId);
 
                 // CSRF-Token abrufen
                 var token = oModel.getSecurityToken();
@@ -109,6 +110,7 @@ sap.ui.define([
                 var sUrl = "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/release";
                 sUrl += "?sap-client=100";
                 sUrl += "&PurchaseOrder='" + purchaseOrderId + "'";
+                sUrl += "&x-csrf-token=" + token;
 
                 // Festlegen der Header für die POST-Anfrage
                 var oHeaders = {
@@ -143,6 +145,7 @@ sap.ui.define([
                 var sUrl = "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/reject";
                 sUrl += "?sap-client=100";
                 sUrl += "&PurchaseOrder='" + purchaseOrderId + "'";
+                sUrl += "&x-csrf-token=" + token;
 
                 // Festlegen der Header für die POST-Anfrage
                 var oHeaders = {
