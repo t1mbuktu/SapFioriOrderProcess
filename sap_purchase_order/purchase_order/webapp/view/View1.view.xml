@@ -6,7 +6,7 @@
     <SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="list">
         <detailPages>
             <Page id="detail" title="{i18n>detailsPageTitle}" class= "sapUiResponsivePadding--header">
-                <ObjectHeader id="purchaseOrderHeader" title="{selectedPurchaseOrder>/oData/Supplier}" titleActive="true" condensed="false" backgroundDesign="Solid" responsive="true"
+                <ObjectHeader id="purchaseOrderHeader" title="{selectedPurchaseOrder>/oData/Supplier}" titleActive="true" condensed="false" responsive="true"
                 number="{path: 'selectedPurchaseOrder>/oData/to_PurchaseOrderItem/results', formatter: '.PriceFormatter.calculateTotalNetPrice'}"
                 numberUnit="{selectedPurchaseOrder>/oData/DocumentCurrency}"  
                 class="sapUiResponsivePadding--header">
