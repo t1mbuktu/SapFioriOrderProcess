@@ -51,7 +51,16 @@
                                 </VBox>
                             </content>
                         </IconTabFilter>
-                        <IconTabFilter id="iconTabBarFilter2" icon="sap-icon://accelerated" tooltip="">
+                        <IconTabFilter id="iconTabBarFilter2" icon="sap-icon://accelerated" tooltip="" 
+                        class="Notes-Detail-Page" count="{viewModel>/PurchaseOrderNoteCount}">
+                            <content>
+                                <StandardListItem 
+                                    title="Pls attach according ISO XXX Certificate"
+                                    description="James Blake"
+                                    icon="sap-icon://person-placeholder"
+                                    class="Notes-Detail-Page"
+                                    />
+                            </content>
                         </IconTabFilter>
                     </items>
                 </IconTabBar>

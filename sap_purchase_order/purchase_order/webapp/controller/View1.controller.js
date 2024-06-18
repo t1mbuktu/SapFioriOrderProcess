@@ -96,7 +96,7 @@ sap.ui.define([
                
             },
 
-            onApprove: function (oEvent) {
+            onApprove: function () {
                 var oModel = this.getOwnerComponent().getModel();
                 var oModelPo = this.getView().getModel("selectedPurchaseOrder");
                 var purchaseOrderId = oModelPo.getProperty("/oData/PurchaseOrder");
@@ -105,7 +105,7 @@ sap.ui.define([
                 var token = oModel.getSecurityToken();
 
                 // Erstellen der URL für die POST-Anfrage
-                var sUrl = "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/release";
+                var sUrl = "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/release?";
                 sUrl += "?sap-client=100";
                 sUrl += "&PurchaseOrder='" + purchaseOrderId + "'";
                 sUrl += "&x-csrf-token=" + token;
@@ -139,7 +139,7 @@ sap.ui.define([
                 var token = oModel.getSecurityToken();
 
                 // Erstellen der URL für die POST-Anfrage
-                var sUrl = "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/reject";
+                var sUrl = "/sap/opu/odata/sap/ZOSO_PURCHASEORDER/reject?";
                 sUrl += "?sap-client=100";
                 sUrl += "&PurchaseOrder='" + purchaseOrderId + "'";
                 sUrl += "&x-csrf-token=" + token;
